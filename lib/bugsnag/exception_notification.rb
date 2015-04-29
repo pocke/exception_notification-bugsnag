@@ -1,4 +1,5 @@
 require 'bugsnag'
+require 'exception_notifier'
 
 module ExceptionNotifier
   class BugsnagNotifier
