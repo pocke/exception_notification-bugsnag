@@ -21,9 +21,11 @@ Or install it yourself as:
 
 ## Usage
 
+**NOTE: not use exception_notification's middleware.**
+
 ```
-Rails.application.config.middleware.use ExceptionNotification::Rack,
-  :bugsnag => {}
+ExceptionNotifier.register_exception_notifier(:bugsnag, {})
+ExceptionNotifier.notify_exception(RuntimeError.new('TEST'))
 ```
 
 ## Development
