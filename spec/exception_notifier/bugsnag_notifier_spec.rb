@@ -5,7 +5,7 @@ RSpec.describe ExceptionNotifier::BugsnagNotifier do
     let(:exception) { RuntimeError.new }
 
     it do
-      expect(Bugsnag).to receive(:auto_notify).with(exception)
+      expect(Bugsnag).to receive(:notify).with(exception)
       described_class.new({}).call(exception)
     end
   end

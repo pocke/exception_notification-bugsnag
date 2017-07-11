@@ -7,7 +7,7 @@ module ExceptionNotifier
     end
 
     def call(exception, options={})
-      Bugsnag.auto_notify(exception)
+      Bugsnag.notify(exception)
     end
   end
 end
