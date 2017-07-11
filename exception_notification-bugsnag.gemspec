@@ -6,6 +6,7 @@ require 'exception_notification/bugsnag/version'
 Gem::Specification.new do |spec|
   spec.name          = "exception_notification-bugsnag"
   spec.version       = ExceptionNotification::Bugsnag::VERSION
+  spec.license       = "MIT"
   spec.authors       = ["koshigoe"]
   spec.email         = ["koshigoeb@gmail.com"]
 
