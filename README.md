@@ -28,6 +28,10 @@ ExceptionNotifier.register_exception_notifier(:bugsnag, {})
 ExceptionNotifier.notify_exception(RuntimeError.new('TEST'))
 ```
 
+### NOTE
+
+- ignore `Bugsnag.configuration.auto_notify` (from 0.2.0)
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
