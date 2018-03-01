@@ -1,5 +1,5 @@
 [![Gem Version](https://badge.fury.io/rb/exception_notification-bugsnag.svg)](http://badge.fury.io/rb/exception_notification-bugsnag)
-![Build Status](https://circleci.com/gh/koshigoe/exception_notification-bugsnag.svg?style=shield)
+![Build Status](https://circleci.com/gh/pocke/exception_notification-bugsnag.svg?style=shield)
 
 # ExceptionNotification::Bugsnag
 
@@ -54,7 +54,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-1. Fork it ( https://github.com/koshigoe/exception_notification-bugsnag/fork )
+1. Fork it ( https://github.com/pocke/exception_notification-bugsnag/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
