@@ -1,5 +1,5 @@
 [![Gem Version](https://badge.fury.io/rb/exception_notification-bugsnag.svg)](http://badge.fury.io/rb/exception_notification-bugsnag)
-![Build Status](https://circleci.com/gh/pocke/exception_notification-bugsnag.svg?style=shield)
+[![Build Status](https://travis-ci.org/pocke/exception_notification-bugsnag.svg?branch=master)](https://travis-ci.org/pocke/exception_notification-bugsnag)
 
 # ExceptionNotification::Bugsnag
 
