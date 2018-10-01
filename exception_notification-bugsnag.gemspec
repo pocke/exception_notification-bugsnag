@@ -24,5 +24,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec"
 
   spec.add_runtime_dependency 'exception_notification'
-  spec.add_runtime_dependency 'bugsnag'
+  spec.add_runtime_dependency 'bugsnag', '>= 6'
 end
