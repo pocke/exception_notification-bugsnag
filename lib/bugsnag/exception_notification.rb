@@ -8,7 +8,7 @@ module ExceptionNotifier
     end
 
     def call(exception, options={}, &block)
-      options = @default_options.merge(options) if options
+      options = @default_options.merge(options)
 
       wrapped_block = proc do |report|
         options.each do |key, value|

@@ -28,6 +28,10 @@ RSpec.describe ExceptionNotifier::BugsnagNotifier do
       described_class.new(severity: 'info').call(exception, severity: 'error')
     end
 
+    it 'calls Bugsnag#notify with invalid options' do
+      expect { described_class.new.call(exception, nil) }.to raise_error(TypeError)
+    end
+
     context 'with block(s)' do
       let(:passed_block) do
         proc do |report|
