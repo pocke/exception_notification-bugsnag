@@ -23,9 +23,23 @@ Or install it yourself as:
 
 **NOTE: not use exception_notification's middleware.**
 
+```ruby
+ExceptionNotifier.add_notifier :bugsnag
+# or
+ExceptionNotifier.add_notifier :bugsnag, severity: 'error'
 ```
-ExceptionNotifier.register_exception_notifier(:bugsnag, {})
-ExceptionNotifier.notify_exception(RuntimeError.new('TEST'))
+
+```ruby
+begin
+  # some code...
+rescue => err
+  ExceptionNotifier.notify_exception(err)
+  # or
+  ExceptionNotifier.notify_exception(err, severity: 'error')
+  # or
+  ExceptionNotifier.notify_exception(err) do |report|
+    report.severity = 'error'
+  end
 ```
 
 ### NOTE
