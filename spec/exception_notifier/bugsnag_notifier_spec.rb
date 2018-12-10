@@ -50,5 +50,29 @@ RSpec.describe ExceptionNotifier::BugsnagNotifier do
         described_class.new.call(exception, &passed_block)
       end
     end
+
+    context 'with `:env` option' do
+      let(:rack_env) { { 'rack.version' => [1, 3] } }
+      let(:config) { instance_double('Bugsnag::Configuration') }
+
+      before do
+        allow(report).to receive(:configuration).and_return(config)
+        allow(Bugsnag).to receive(:notify) do |_exception, &block|
+          block.call report
+        end
+      end
+
+      it 'ignores the option' do
+        expect(config).to receive(:send_environment).and_return(false)
+        expect(report).not_to receive(:add_tab)
+        described_class.new.call(exception, env: rack_env)
+      end
+
+      it 'adds a tab for the option' do
+        expect(config).to receive(:send_environment).and_return(true)
+        expect(report).to receive(:add_tab).with(:environment, rack_env)
+        described_class.new.call(exception, env: rack_env)
+      end
+    end
   end
 end
