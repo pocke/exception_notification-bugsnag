@@ -12,7 +12,9 @@ module ExceptionNotifier
 
       wrapped_block = proc do |report|
         options.each do |key, value|
-          report.public_send("#{key}=", value)
+          if report.instance_of?(Bugsnag::Report)
+            report.public_send("#{key}=", value)
+          end
         end
 
         block.call(report) if block

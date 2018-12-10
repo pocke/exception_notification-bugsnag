@@ -5,6 +5,10 @@ RSpec.describe ExceptionNotifier::BugsnagNotifier do
     let(:exception) { RuntimeError.new }
     let(:report) { instance_double('Bugsnag::Report') }
 
+    before do
+      allow(report).to receive(:instance_of?).with(Bugsnag::Report).and_return(true)
+    end
+
     it 'calls Bugsnag#notify' do
       expect(Bugsnag).to receive(:notify).with(exception).and_yield(report)
       described_class.new({}).call(exception)
@@ -30,6 +34,15 @@ RSpec.describe ExceptionNotifier::BugsnagNotifier do
 
     it 'calls Bugsnag#notify with invalid options' do
       expect { described_class.new.call(exception, nil) }.to raise_error(TypeError)
+    end
+
+    it 'ignores passed options which Bugsnag::Report does not have' do
+      expect(report).to receive(:instance_of?).with(Bugsnag::Report).and_return(false).exactly(3).times
+      expect(Bugsnag).to receive(:notify) do |_exception, &block|
+        block.call report
+      end
+      expect(report).not_to receive(:severity=)
+      described_class.new.call(exception, foo: 1, bar: 2, severity: 'info')
     end
 
     context 'with block(s)' do
