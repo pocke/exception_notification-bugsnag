@@ -12,7 +12,10 @@ module ExceptionNotifier
 
       wrapped_block = proc do |report|
         options.each do |key, value|
-          report.public_send("#{key}=", value)
+          accessor = "#{key}=".to_sym
+          if report.respond_to?(accessor)
+            report.public_send(accessor, value)
+          end
         end
 
         block.call(report) if block

@@ -32,6 +32,14 @@ RSpec.describe ExceptionNotifier::BugsnagNotifier do
       expect { described_class.new.call(exception, nil) }.to raise_error(TypeError)
     end
 
+    it 'ignores passed unknown options' do
+      expect(Bugsnag).to receive(:notify) do |_exception, &block|
+        block.call report
+      end
+      expect(report).to receive(:severity=).with('info')
+      described_class.new.call(exception, foo: 1, bar: 2, severity: 'info')
+    end
+
     context 'with block(s)' do
       let(:passed_block) do
         proc do |report|
