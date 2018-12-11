@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Send exception info to Bugsnag.}
   spec.description   = %q{Send exception info to Bugsnag.}
-  spec.homepage      = "https://github.com/koshigoe/exception_notification-bugsnag"
+  spec.homepage      = "https://github.com/pocke/exception_notification-bugsnag"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
