@@ -28,8 +28,17 @@ RSpec.describe ExceptionNotifier::BugsnagNotifier do
       described_class.new(severity: 'info').call(exception, severity: 'error')
     end
 
-    it 'calls Bugsnag#notify with invalid options' do
+    it 'calls Bugsnag#notify with an invalid option' do
       expect { described_class.new.call(exception, nil) }.to raise_error(TypeError)
+    end
+
+    it 'calls Bugsnag#notify with an unknown option and warns with a message' do
+      instance = described_class.new
+      expect(instance).to receive(:warn).with(<<~MSG.chomp)
+        ExceptionNotifier::BugsnagNotifier does not know the data: `:unknown=>{:name=>"xyz"}`
+      MSG
+      expect(Bugsnag).to receive(:notify).with(exception).and_yield(report)
+      instance.call(exception, unknown: { name: 'xyz' })
     end
 
     context 'with block(s)' do
@@ -51,7 +60,7 @@ RSpec.describe ExceptionNotifier::BugsnagNotifier do
       end
     end
 
-    context 'with `:env` option' do
+    context 'with Rack option' do
       let(:rack_env) { { 'rack.version' => [1, 3] } }
       let(:config) { instance_double('Bugsnag::Configuration') }
 
@@ -72,6 +81,36 @@ RSpec.describe ExceptionNotifier::BugsnagNotifier do
         expect(config).to receive(:send_environment).and_return(true)
         expect(report).to receive(:add_tab).with(:environment, rack_env)
         described_class.new.call(exception, env: rack_env)
+      end
+    end
+
+    context 'with Sidekiq option' do
+      let(:sidekiq_context) { { msg: 'test', queue: 'default' } }
+
+      before do
+        allow(Bugsnag).to receive(:notify) do |_exception, &block|
+          block.call report
+        end
+      end
+
+      it 'adds a tab for the option' do
+        expect(report).to receive(:add_tab).with(:sidekiq, sidekiq_context)
+        described_class.new.call(exception, data: { sidekiq: sidekiq_context })
+      end
+    end
+
+    context 'with Resque option' do
+      let(:resque_data) { { msg: 'test', queue: 'default' } }
+
+      before do
+        allow(Bugsnag).to receive(:notify) do |_exception, &block|
+          block.call report
+        end
+      end
+
+      it 'adds a tab for the option' do
+        expect(report).to receive(:add_tab).with(:resque, resque_data)
+        described_class.new.call(exception, data: { resque: resque_data })
       end
     end
   end
