@@ -7,6 +7,8 @@
 
 ### Breaking Changes:
 
+- [#17](https://github.com/pocke/exception_notification-bugsnag/pull/17) Requires `ruby >= 2.3.0`. ([@ybiquitous](https://github.com/ybiquitous))
+
 ### Enhancements:
 
 ### Fixed Bugs:
