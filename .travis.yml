@@ -1,11 +1,13 @@
 language: ruby
 
 rvm:
-  - 2.2.9
-  - 2.3.6
-  - 2.4.3
-  - 2.5.0
+  - 2.3.8
+  - 2.4.5
+  - 2.5.3
+  - 2.6.1
 
 cache: bundler
 
-before_install: 'gem update --system'
+before_install:
+  - gem update --system
+  - gem install bundler
