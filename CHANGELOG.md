@@ -3,13 +3,22 @@
 
 ## unreleased
 
-[Full Changelog](https://github.com/pocke/exception_notification-bugsnag/compare/v0.3.0...master)
+[Full Changelog](https://github.com/pocke/exception_notification-bugsnag/compare/v0.4.0...master)
+
+### Breaking Changes:
+
+### Enhancements:
+
+### Fixed Bugs:
+
+
+## 0.4.0
+
+[Full Changelog](https://github.com/pocke/exception_notification-bugsnag/compare/v0.3.0...v0.4.0)
 
 ### Breaking Changes:
 
 - [#17](https://github.com/pocke/exception_notification-bugsnag/pull/17) Requires `ruby >= 2.3.0`. ([@ybiquitous](https://github.com/ybiquitous))
-
-### Enhancements:
 
 ### Fixed Bugs:
 
