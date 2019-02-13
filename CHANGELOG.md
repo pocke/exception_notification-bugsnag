@@ -13,6 +13,8 @@
 
 ### Fixed Bugs:
 
+- [#16](https://github.com/pocke/exception_notification-bugsnag/pull/16) Support Sidekiq & Resque. ([@ybiquitous](https://github.com/ybiquitous))
+
 
 ## 0.3.0
 
